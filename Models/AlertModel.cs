@@ -13,6 +13,11 @@ namespace AgriYard.Models
         public string Message { get; set; }
         public string TargetAudience { get; set; }   // "All Farmers & Traders", "Farmers", "Traders"
         public string DateFormatted { get; set; }
+        public string DatePosted 
+        { 
+            get { return DateFormatted; } 
+            set { DateFormatted = value; } 
+        }
         public string Status { get; set; }           // "Active", "Archived"
 
         public AlertModel()

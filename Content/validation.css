@@ -23,7 +23,7 @@ span.validation-error,
 
 /* Inline icon for error clarity */
 .validation-error::before {
-    content: "⚠ ";
+    content: "\26A0\0020";
     font-size: 11px;
     margin-right: 3px;
 }

@@ -56,100 +56,100 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\Login.aspx.cs">
+    <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account\ForgotPassword.aspx.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
+    <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ManageData.aspx.cs">
-      <DependentUpon>ManageData.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\UsersAlerts.aspx.cs">
-      <DependentUpon>UsersAlerts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Settings.aspx.cs">
-      <DependentUpon>Settings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Market\CropSearch.aspx.cs">
-      <DependentUpon>CropSearch.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Market\FilterSort.aspx.cs">
-      <DependentUpon>FilterSort.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Market\Rates.aspx.cs">
+    <Compile Include="Rates.aspx.cs">
       <DependentUpon>Rates.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Market\CropDetails.aspx.cs">
+    <Compile Include="CropDetails.aspx.cs">
       <DependentUpon>CropDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Market\PriceHistory.aspx.cs">
-      <DependentUpon>PriceHistory.aspx</DependentUpon>
+    <Compile Include="CropSearch.aspx.cs">
+      <DependentUpon>CropSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Market\PriceRise.aspx.cs">
+    <Compile Include="FilterSort.aspx.cs">
+      <DependentUpon>FilterSort.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PriceRise.aspx.cs">
       <DependentUpon>PriceRise.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Market\PriceFall.aspx.cs">
+    <Compile Include="PriceFall.aspx.cs">
       <DependentUpon>PriceFall.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Yards\YardDetails.aspx.cs">
-      <DependentUpon>YardDetails.aspx</DependentUpon>
+    <Compile Include="PriceHistory.aspx.cs">
+      <DependentUpon>PriceHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Yards\YardList.aspx.cs">
-      <DependentUpon>YardList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Shops\ShopDirectory.aspx.cs">
+    <Compile Include="ShopDirectory.aspx.cs">
       <DependentUpon>ShopDirectory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Profile\Profile.aspx.cs">
+    <Compile Include="YardDetails.aspx.cs">
+      <DependentUpon>YardDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YardList.aspx.cs">
+      <DependentUpon>YardList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Profile\PersonalInfo.aspx.cs">
+    <Compile Include="PersonalInfo.aspx.cs">
       <DependentUpon>PersonalInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Profile\ChangePassword.aspx.cs">
+    <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Support\HelpSupport.aspx.cs">
+    <Compile Include="HelpSupport.aspx.cs">
       <DependentUpon>HelpSupport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Shared\Main.Master.cs">
-      <DependentUpon>Main.Master</DependentUpon>
+    <Compile Include="AdminDashboard.aspx.cs">
+      <DependentUpon>AdminDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Shared\Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
+    <Compile Include="AdminManageData.aspx.cs">
+      <DependentUpon>AdminManageData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminUsersAlerts.aspx.cs">
+      <DependentUpon>AdminUsersAlerts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSettings.aspx.cs">
+      <DependentUpon>AdminSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Models\UserModel.cs" />
@@ -162,32 +162,36 @@
     <Compile Include="Data\SampleData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AgriYard.mdf" />
+    <Content Include="App_Data\AgriYard_log.ldf">
+      <DependentUpon>AgriYard.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="Site1.Master" />
+    <Content Include="Admin.Master" />
     <Content Include="Default.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Register.aspx" />
+    <Content Include="ForgotPassword.aspx" />
+    <Content Include="Rates.aspx" />
+    <Content Include="CropDetails.aspx" />
+    <Content Include="CropSearch.aspx" />
+    <Content Include="FilterSort.aspx" />
+    <Content Include="PriceRise.aspx" />
+    <Content Include="PriceFall.aspx" />
+    <Content Include="PriceHistory.aspx" />
+    <Content Include="ShopDirectory.aspx" />
+    <Content Include="YardDetails.aspx" />
+    <Content Include="YardList.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="PersonalInfo.aspx" />
+    <Content Include="ChangePassword.aspx" />
+    <Content Include="HelpSupport.aspx" />
+    <Content Include="AdminDashboard.aspx" />
+    <Content Include="AdminManageData.aspx" />
+    <Content Include="AdminUsersAlerts.aspx" />
+    <Content Include="AdminSettings.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Account\Login.aspx" />
-    <Content Include="Account\ForgotPassword.aspx" />
-    <Content Include="Account\Register.aspx" />
-    <Content Include="Admin\Dashboard.aspx" />
-    <Content Include="Admin\ManageData.aspx" />
-    <Content Include="Admin\UsersAlerts.aspx" />
-    <Content Include="Admin\Settings.aspx" />
-    <Content Include="Market\CropSearch.aspx" />
-    <Content Include="Market\FilterSort.aspx" />
-    <Content Include="Market\Rates.aspx" />
-    <Content Include="Market\CropDetails.aspx" />
-    <Content Include="Market\PriceHistory.aspx" />
-    <Content Include="Market\PriceRise.aspx" />
-    <Content Include="Market\PriceFall.aspx" />
-    <Content Include="Yards\YardDetails.aspx" />
-    <Content Include="Yards\YardList.aspx" />
-    <Content Include="Shops\ShopDirectory.aspx" />
-    <Content Include="Profile\Profile.aspx" />
-    <Content Include="Profile\PersonalInfo.aspx" />
-    <Content Include="Profile\ChangePassword.aspx" />
-    <Content Include="Support\HelpSupport.aspx" />
-    <Content Include="Shared\Main.Master" />
-    <Content Include="Shared\Admin.Master" />
     <Content Include="Content\site.css" />
     <Content Include="Content\auth.css" />
     <Content Include="Content\dashboard.css" />
@@ -205,7 +209,6 @@
     <Content Include="Images\lock_icon.svg" />
     <Content Include="Images\help_icon.svg" />
     <Content Include="Images\garlic_icon.svg" />
-    <Content Include="Database\AgriYard_CreateTables.sql" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>

@@ -20,13 +20,20 @@
     background-color: #ffffff;
     border-bottom: 1px solid #e2eae2;
     height: 70px;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.admin-header-inner {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .admin-brand-title {
@@ -50,10 +57,10 @@
 .admin-shell {
     display: flex;
     flex: 1;
-    max-width: 1200px;
+    max-width: 1440px;
     width: 100%;
     margin: 0 auto;
-    padding: 32px 24px;
+    padding: 32px 32px;
     gap: 32px;
 }
 
@@ -398,11 +405,23 @@
 
 /* ==========================================================================
    8. RESPONSIVE ADMIN LAYOUT
-   Adapts sidebar and grids on tablet and mobile
+   Adapts sidebar, grids, items, and tables on tablet and mobile
    ========================================================================== */
+@media (max-width: 1200px) {
+    .admin-shell {
+        padding: 24px 20px;
+        gap: 24px;
+    }
+    .admin-header-inner {
+        padding: 0 20px;
+    }
+}
+
 @media (max-width: 900px) {
     .admin-shell {
         flex-direction: column;
+        padding: 20px 16px;
+        gap: 20px;
     }
     .admin-sidebar {
         width: 100%;
@@ -411,6 +430,8 @@
         flex-direction: row;
         overflow-x: auto;
         padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
     }
     .admin-nav-item {
         width: auto;
@@ -422,9 +443,25 @@
     .admin-metrics-row {
         grid-template-columns: 1fr 1fr;
     }
+    .admin-header-inner {
+        padding: 0 16px;
+    }
 }
 
 @media (max-width: 600px) {
+    .admin-shell {
+        padding: 16px 12px;
+        gap: 16px;
+    }
+    .admin-header {
+        height: 62px;
+    }
+    .admin-header-inner {
+        padding: 0 12px;
+    }
+    .admin-brand-title {
+        font-size: 19px;
+    }
     .admin-fields-row {
         grid-template-columns: 1fr;
     }
@@ -433,5 +470,19 @@
     }
     .admin-metrics-row {
         grid-template-columns: 1fr;
+    }
+    .admin-item-row-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .admin-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .admin-users-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
 }

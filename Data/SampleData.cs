@@ -15,8 +15,15 @@ namespace AgriYard.Data
         private static readonly object _lock = new object();
 
         // --------------------------------------------------------------------
-        // STATIC IN-MEMORY COLLECTIONS
+        // STATIC IN-MEMORY COLLECTIONS & SYSTEM CONFIGURATION
         // --------------------------------------------------------------------
+        public static string HelplineNumber { get; set; } = "+91 9624042246";
+        public static string SupportEmail { get; set; } = "support@agriyard.com";
+        public static string AppVersion { get; set; } = "v1.0.0";
+        public static string AdminPassword { get; set; } = "admin123";
+        public static UserModel CurrentUser { get; set; }
+        public static string DefaultYard { get; set; } = "Rajkot Marketing Yard";
+
         private static List<YardModel> _yards;
         private static List<CropModel> _crops;
         private static List<MarketRateModel> _marketRates;
@@ -29,6 +36,7 @@ namespace AgriYard.Data
 
         static SampleData()
         {
+            CurrentUser = new UserModel(1, "Harshal Dobariya", "harshal.dobariya@example.com", "+91 98765 43210", "Farmer", "Active");
             InitializeData();
         }
 
@@ -294,19 +302,83 @@ namespace AgriYard.Data
             }
         }
 
+        public static MarketRateModel GetRate(string cropId, string yardId)
+        {
+            lock (_lock)
+            {
+                var rate = _marketRates.FirstOrDefault(r => 
+                    r.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase) && 
+                    (string.IsNullOrEmpty(yardId) || r.YardId.Equals(yardId, StringComparison.OrdinalIgnoreCase)));
+                return rate ?? GetRateByCrop(cropId);
+            }
+        }
+
         public static void UpdateMarketRate(string cropId, string yardId, int arrival, decimal min, decimal avg, decimal max)
         {
             lock (_lock)
             {
-                var existing = _marketRates.FirstOrDefault(r => r.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase));
+                var existing = _marketRates.FirstOrDefault(r => 
+                    r.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase) && 
+                    (string.IsNullOrEmpty(yardId) || r.YardId.Equals(yardId, StringComparison.OrdinalIgnoreCase)));
+                
                 if (existing != null)
                 {
+                    decimal prevAvg = existing.AvgPrice;
                     existing.ArrivalBags = arrival;
                     existing.MinPrice = min;
                     existing.AvgPrice = avg;
                     existing.MaxPrice = max;
                     existing.TotalQuantityKg = arrival * 20;
+                    existing.PriceChange = avg - prevAvg;
+                    if (prevAvg > 0)
+                    {
+                        existing.PercentageChange = Math.Round(((avg - prevAvg) / prevAvg) * 100, 2);
+                    }
+                    existing.Direction = existing.PriceChange >= 0 ? "Rise" : "Fall";
                     existing.LastUpdatedText = DateTime.Now.ToString("dd MMM yyyy, hh:mm tt");
+                }
+                else
+                {
+                    // Create rate if newly tracked
+                    var crop = _crops.FirstOrDefault(c => c.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase));
+                    var yard = _yards.FirstOrDefault(y => y.YardId.Equals(yardId, StringComparison.OrdinalIgnoreCase));
+                    string cropName = crop != null ? crop.FullDisplayName : cropId;
+                    string yardName = yard != null ? yard.YardName : "Rajkot Marketing Yard";
+
+                    _marketRates.Add(new MarketRateModel
+                    {
+                        CropId = cropId,
+                        CropDisplayName = cropName,
+                        YardId = yardId ?? "rajkot",
+                        YardName = yardName,
+                        ArrivalBags = arrival,
+                        TotalQuantityKg = arrival * 20,
+                        MinPrice = min,
+                        AvgPrice = avg,
+                        MaxPrice = max,
+                        PriceChange = 0,
+                        PercentageChange = 0,
+                        Direction = "Rise",
+                        LastUpdatedText = DateTime.Now.ToString("dd MMM yyyy, hh:mm tt")
+                    });
+                }
+
+                // Synchronize gainers / losers if present
+                var g = _gainers.FirstOrDefault(x => x.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase));
+                if (g != null)
+                {
+                    g.AvgPrice = avg;
+                    g.MinPrice = min;
+                    g.MaxPrice = max;
+                    g.ArrivalBags = arrival;
+                }
+                var l = _losers.FirstOrDefault(x => x.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase));
+                if (l != null)
+                {
+                    l.AvgPrice = avg;
+                    l.MinPrice = min;
+                    l.MaxPrice = max;
+                    l.ArrivalBags = arrival;
                 }
             }
         }
@@ -464,6 +536,135 @@ namespace AgriYard.Data
                 }
 
                 return query.ToList();
+            }
+        }
+
+        // --------------------------------------------------------------------
+        // ENHANCED ADMIN & USER PROFILE CONTROLS (IN-MEMORY PERSISTENCE)
+        // --------------------------------------------------------------------
+
+        public static void UpdateCurrentUser(string name, string phone, string email, string defaultYard)
+        {
+            lock (_lock)
+            {
+                if (CurrentUser == null)
+                {
+                    CurrentUser = new UserModel(1, name, email, phone, "Farmer", "Active");
+                }
+                else
+                {
+                    CurrentUser.FullName = name;
+                    CurrentUser.MobileNumber = phone;
+                    CurrentUser.Email = email;
+                }
+                DefaultYard = defaultYard;
+            }
+        }
+
+        public static void UpdateYard(YardModel updatedYard)
+        {
+            lock (_lock)
+            {
+                var existing = _yards.FirstOrDefault(y => y.YardId.Equals(updatedYard.YardId, StringComparison.OrdinalIgnoreCase));
+                if (existing != null)
+                {
+                    existing.YardName = updatedYard.YardName;
+                    existing.ShortName = updatedYard.ShortName;
+                    existing.Location = updatedYard.Location;
+                    existing.Address = updatedYard.Address;
+                    existing.ContactNumber = updatedYard.ContactNumber;
+                    existing.TotalShops = updatedYard.TotalShops;
+                    existing.TotalShopsNumeric = updatedYard.TotalShopsNumeric;
+                    existing.EstablishedYear = updatedYard.EstablishedYear;
+                }
+            }
+        }
+
+        public static void AddCrop(CropModel crop)
+        {
+            lock (_lock)
+            {
+                if (!_crops.Any(c => c.CropId.Equals(crop.CropId, StringComparison.OrdinalIgnoreCase)))
+                {
+                    _crops.Add(crop);
+                }
+            }
+        }
+
+        public static void ToggleCropStatus(string cropId)
+        {
+            lock (_lock)
+            {
+                var crop = _crops.FirstOrDefault(c => c.CropId.Equals(cropId, StringComparison.OrdinalIgnoreCase));
+                if (crop != null)
+                {
+                    crop.Status = (crop.Status == "Active") ? "Inactive" : "Active";
+                }
+            }
+        }
+
+        public static void AddShop(ShopModel shop)
+        {
+            lock (_lock)
+            {
+                shop.ShopId = _shops.Count > 0 ? _shops.Max(s => s.ShopId) + 1 : 1;
+                _shops.Add(shop);
+            }
+        }
+
+        public static void DeleteShop(int shopId)
+        {
+            lock (_lock)
+            {
+                _shops.RemoveAll(s => s.ShopId == shopId);
+            }
+        }
+
+        public static void ToggleShopStatus(int shopId)
+        {
+            lock (_lock)
+            {
+                var shop = _shops.FirstOrDefault(s => s.ShopId == shopId);
+                if (shop != null)
+                {
+                    shop.Status = (shop.Status == "Active") ? "Suspended" : "Active";
+                }
+            }
+        }
+
+        public static void ToggleUserStatus(int userId)
+        {
+            lock (_lock)
+            {
+                var user = _users.FirstOrDefault(u => u.UserId == userId);
+                if (user != null)
+                {
+                    user.Status = (user.Status == "Active") ? "Blocked" : "Active";
+                }
+            }
+        }
+
+        public static List<AlertModel> GetActiveAlerts()
+        {
+            lock (_lock)
+            {
+                return _alerts.Where(a => a.Status.Equals("Active", StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+        }
+
+        public static AlertModel GetLatestAlert()
+        {
+            lock (_lock)
+            {
+                return _alerts.FirstOrDefault(a => a.Status.Equals("Active", StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
+        public static void DeleteAlert(int alertId)
+        {
+            lock (_lock)
+            {
+                _alerts.RemoveAll(a => a.AlertId == alertId);
             }
         }
     }

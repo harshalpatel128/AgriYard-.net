@@ -1,4 +1,4 @@
-<%@ Page Title="Home Dashboard" Language="C#" MasterPageFile="~/Shared/Main.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AgriYard.Default" %>
+﻿<%@ Page Title="Home Dashboard" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AgriYard.Default" %>
 
 <asp:Content ID="HeadContent1" ContentPlaceHolderID="HeadContent" runat="server">
     <%-- Dashboard specific styling --%>
@@ -17,6 +17,24 @@
                 <span class="date-pill-badge">21 May 2025</span>
             </div>
         </div>
+
+        <%-- Broadcast Announcement Banner (from Admin) --%>
+        <asp:Panel ID="pnlBroadcastBanner" runat="server" Visible="false" CssClass="broadcast-announcement-banner">
+            <div class="broadcast-banner-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+            </div>
+            <div class="broadcast-banner-body">
+                <div class="broadcast-banner-title">
+                    <asp:Literal ID="litBannerTitle" runat="server" />
+                </div>
+                <div class="broadcast-banner-desc">
+                    <asp:Literal ID="litBannerBody" runat="server" />
+                </div>
+            </div>
+        </asp:Panel>
 
         <%-- Quick Search Bar: Yard or Crop Lookup --%>
         <div class="dash-search-container">
@@ -43,7 +61,7 @@
             <div class="yards-grid">
                 <asp:Repeater ID="rptMarketingYards" runat="server">
                     <ItemTemplate>
-                        <a href='<%# ResolveUrl("~/Yards/YardDetails.aspx?id=" + Eval("YardId")) %>' class="yard-card">
+                        <a href='<%# ResolveUrl("~/YardDetails.aspx?id=" + Eval("YardId")) %>' class="yard-card">
                             <img src='<%# ResolveUrl(Eval("ImageUrl").ToString()) %>' alt='<%# Eval("YardName") %>' class="yard-card-image" />
                             <div class="yard-card-body">
                                 <h3 class="yard-card-title"><%# Eval("ShortName") %></h3>
@@ -115,3 +133,4 @@
         </section>
     </div>
 </asp:Content>
+

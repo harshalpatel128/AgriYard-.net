@@ -1,0 +1,109 @@
+﻿<%@ Page Title="Crop Price Details" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="CropDetails.aspx.cs" Inherits="AgriYard.CropDetails" %>
+
+<asp:Content ID="HeadContent1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet" href="~/Content/market.css" />
+</asp:Content>
+
+<asp:Content ID="MainContent1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="content-container">
+        <%-- Back Link to Rates (Page 11) --%>
+        <a href="<%= ResolveUrl("~/Rates.aspx") %>" class="back-nav-link">
+            &lt; Back to Today's Rates
+        </a>
+
+        <%-- Header Row: Crop Title & Last Updated Timestamp --%>
+        <div class="market-page-header">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="crop-icon-chip" style="width: 38px; height: 38px; display:inline-flex; align-items:center; justify-content:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;">
+                        <path d="M2 22s5.5-1.5 8.5-5.5C13.5 12.5 15 7 15 7s-5.5 1.5-9.5 5.5C1.5 16.5 2 22 2 22z" fill="#e8f5e9"></path>
+                        <path d="M12 12l8-8"></path>
+                        <path d="M17 4l3 3"></path>
+                    </svg>
+                </span>
+                <h1 style="font-size: 26px; font-weight: 800; color: #1b5e20;">
+                    <asp:Literal ID="litCropTitle" runat="server">Wheat (Ghau)</asp:Literal>
+                </h1>
+            </div>
+            <div style="font-size: 13.5px; color: #687968;">
+                Last Updated: <asp:Literal ID="litLastUpdated" runat="server">21 May 2025, 08:30 AM</asp:Literal>
+            </div>
+        </div>
+
+        <%-- Two Column Split: Today's Summary & 7-Day History Table --%>
+        <div class="crop-details-grid">
+            <%-- Left Column: Today's Summary (20 Kg) --%>
+            <div class="crop-summary-card">
+                <h3 class="crop-summary-heading">Today's Summary (20 Kg)</h3>
+
+                <%-- Arrival and Total Quantity Stats --%>
+                <div class="stats-two-up">
+                    <div class="stat-box">
+                        <div class="stat-label">Total Arrival</div>
+                        <div class="stat-val"><asp:Literal ID="litArrival" runat="server">980 Bags</asp:Literal></div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Total Quantity</div>
+                        <div class="stat-val"><asp:Literal ID="litTotalQty" runat="server">19,600 Kg</asp:Literal></div>
+                    </div>
+                </div>
+
+                <%-- Three Price Highlight Cards: Min, Avg, Highest --%>
+                <div class="price-three-cards">
+                    <div class="price-highlight-card min-box">
+                        <div class="price-box-label">Minimum Price</div>
+                        <div class="price-box-amount"><asp:Literal ID="litMinPrice" runat="server">&#8377;620</asp:Literal></div>
+                    </div>
+                    <div class="price-highlight-card avg-box">
+                        <div class="price-box-label">Average Price</div>
+                        <div class="price-box-amount"><asp:Literal ID="litAvgPrice" runat="server">&#8377;670</asp:Literal></div>
+                    </div>
+                    <div class="price-highlight-card max-box">
+                        <div class="price-box-label">Highest Price</div>
+                        <div class="price-box-amount"><asp:Literal ID="litMaxPrice" runat="server">&#8377;720</asp:Literal></div>
+                    </div>
+                </div>
+
+                <%-- View Full Trend Chart Button --%>
+                <asp:HyperLink 
+                    ID="lnkViewChart" 
+                    runat="server" 
+                    NavigateUrl="~/PriceHistory.aspx" 
+                    CssClass="btn btn-primary btn-block">
+                    View Full Trend Chart
+                </asp:HyperLink>
+            </div>
+
+            <%-- Right Column: Previous 7 Days Prices (20 Kg) Table --%>
+            <div class="crop-summary-card">
+                <h3 class="crop-summary-heading">Previous 7 Days Prices (20 Kg)</h3>
+
+                <div class="table-responsive-wrapper" style="box-shadow: none; border-radius: 8px;">
+                    <table class="agri-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Min (&#8377;)</th>
+                                <th>Avg (&#8377;)</th>
+                                <th>Max (&#8377;)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <asp:Repeater ID="rptSevenDayHistory" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%# Eval("DateString") %></td>
+                                        <td class="price-cell"><%# Eval("MinFormatted") %></td>
+                                        <td class="price-cell" style="color: #2e7d32;"><%# Eval("AvgFormatted") %></td>
+                                        <td class="price-cell"><%# Eval("MaxFormatted") %></td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>
+

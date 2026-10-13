@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,6 +17,9 @@ namespace AgriYard
         protected Repeater rptMarketingYards;
         protected Repeater rptTopGainers;
         protected Repeater rptTopLosers;
+        protected Panel pnlBroadcastBanner;
+        protected Literal litBannerTitle;
+        protected Literal litBannerBody;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,6 +34,19 @@ namespace AgriYard
         /// </summary>
         private void BindDashboardData()
         {
+            // 0. Active Broadcast Banner
+            var latestAlert = SampleData.GetLatestAlert();
+            if (latestAlert != null)
+            {
+                pnlBroadcastBanner.Visible = true;
+                litBannerTitle.Text = Server.HtmlEncode(latestAlert.Title) + " &bull; " + Server.HtmlEncode(latestAlert.DatePosted);
+                litBannerBody.Text = Server.HtmlEncode(latestAlert.Message);
+            }
+            else
+            {
+                pnlBroadcastBanner.Visible = false;
+            }
+
             // 1. Marketing Yards (Rajkot, Junagadh, Gondal, Mendarda)
             rptMarketingYards.DataSource = SampleData.GetAllYards();
             rptMarketingYards.DataBind();
@@ -52,8 +68,9 @@ namespace AgriYard
             string query = txtDashboardSearch.Text.Trim();
             if (!string.IsNullOrEmpty(query))
             {
-                Response.Redirect("~/Market/CropSearch.aspx?q=" + Server.UrlEncode(query));
+                Response.Redirect("~/CropSearch.aspx?q=" + Server.UrlEncode(query));
             }
         }
     }
 }
+

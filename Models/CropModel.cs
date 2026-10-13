@@ -22,10 +22,12 @@ namespace AgriYard.Models
         public string Category { get; set; }        // Grains, Oilseeds, Pulses, Cash Crop, Spices
         public string StandardUnit { get; set; }    // "20 Kg"
         public string IconCode { get; set; }        // CSS / SVG icon identifier
+        public string Status { get; set; }          // "Active", "Inactive"
 
         public CropModel()
         {
             StandardUnit = "20 Kg";
+            Status = "Active";
         }
 
         public CropModel(string id, string name, string gujName, string category, string icon)

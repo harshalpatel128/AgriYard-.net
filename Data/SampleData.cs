@@ -17,12 +17,12 @@ namespace AgriYard.Data
         // --------------------------------------------------------------------
         // STATIC IN-MEMORY COLLECTIONS & SYSTEM CONFIGURATION
         // --------------------------------------------------------------------
-        public static string HelplineNumber { get; set; } = "+91 9624042246";
-        public static string SupportEmail { get; set; } = "support@agriyard.com";
-        public static string AppVersion { get; set; } = "v1.0.0";
-        public static string AdminPassword { get; set; } = "admin123";
+        public static string HelplineNumber { get; set; }
+        public static string SupportEmail { get; set; }
+        public static string AppVersion { get; set; }
+        public static string AdminPassword { get; set; }
         public static UserModel CurrentUser { get; set; }
-        public static string DefaultYard { get; set; } = "Rajkot Marketing Yard";
+        public static string DefaultYard { get; set; }
 
         private static List<YardModel> _yards;
         private static List<CropModel> _crops;
@@ -36,6 +36,11 @@ namespace AgriYard.Data
 
         static SampleData()
         {
+            HelplineNumber = "+91 9624042246";
+            SupportEmail = "support@agriyard.com";
+            AppVersion = "v1.0.0";
+            AdminPassword = "admin123";
+            DefaultYard = "Rajkot Marketing Yard";
             CurrentUser = new UserModel(1, "Harshal Dobariya", "harshal.dobariya@example.com", "+91 98765 43210", "Farmer", "Active");
             InitializeData();
         }
@@ -50,19 +55,19 @@ namespace AgriYard.Data
             {
                 new YardModel("rajkot", "Rajkot Marketing Yard", "Rajkot", "Rajkot, Gujarat",
                     "150ft Ring Road, Rajkot, Gujarat 360005", "0281 2456789", "250+ Shops", 250, 1985,
-                    "/Images/yard_rajkot.svg"),
+                    "/Images/yard_rajkot.jpg"),
 
                 new YardModel("junagadh", "Junagadh Marketing Yard", "Junagadh", "Junagadh, Gujarat",
-                    "150ft Ring Road, Rajkot, Gujarat 360005", "0281 2456789", "250+ Shops", 250, 1985,
-                    "/Images/yard_junagadh.svg"),
+                    "Dolatpara, Junagadh, Gujarat 362001", "0285 2631555", "180+ Shops", 180, 1982,
+                    "/Images/yard_junagadh.jpg"),
 
                 new YardModel("gondal", "Gondal Marketing Yard", "Gondal", "Gondal, Gujarat",
                     "National Highway 27, Gondal, Gujarat 360311", "0282 5220015", "210+ Shops", 210, 1978,
-                    "/Images/yard_gondal.svg"),
+                    "/Images/yard_gondal.jpg"),
 
                 new YardModel("mendarda", "Mendarda Marketing Yard", "Mendarda", "Junagadh, Gujarat",
                     "Market Yard Road, Mendarda, Gujarat 362260", "0287 2241230", "95+ Shops", 95, 1994,
-                    "/Images/yard_mendarda.svg")
+                    "/Images/yard_mendarda.jpg")
             };
 
             // 2. Agricultural Crops

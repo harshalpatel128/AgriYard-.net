@@ -52,12 +52,12 @@
             box-sizing: border-box;
         }
         .custom-input:focus {
-            border-color: #2e7d32;
+            border-color: var(--primary-green, #2e7d32);
             box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
         }
         .btn-save-green {
             width: 100%;
-            background-color: #2e7d32;
+            background-color: var(--primary-green, #2e7d32);
             color: #ffffff;
             font-weight: 700;
             font-size: 15px;
@@ -68,7 +68,7 @@
             transition: background-color 0.15s ease;
         }
         .btn-save-green:hover {
-            background-color: #1b5e20;
+            background-color: var(--primary-green-dark, #1b5e20);
         }
         @media (max-width: 600px) {
             .profile-card-form {

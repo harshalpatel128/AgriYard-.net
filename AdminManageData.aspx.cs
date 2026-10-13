@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -152,7 +152,7 @@ namespace AgriYard
                     string id = hfEditYardId.Value;
                     YardModel yard = new YardModel(
                         id, name, name.Split(' ')[0], loc, loc, "0281 2456789",
-                        shops + "+ Shops", shops, year, "/Images/yard_rajkot.svg"
+                        shops + "+ Shops", shops, year, "/Images/yard_rajkot.jpg"
                     );
 
                     SampleData.UpdateYard(yard);
@@ -167,7 +167,7 @@ namespace AgriYard
                     string id = name.ToLowerInvariant().Replace(" ", "_");
                     YardModel newYard = new YardModel(
                         id, name, name.Split(' ')[0], loc, loc, "0281 000000",
-                        shops + "+ Shops", shops, year, "/Images/yard_rajkot.svg"
+                        shops + "+ Shops", shops, year, "/Images/yard_rajkot.jpg"
                     );
 
                     SampleData.AddYard(newYard);

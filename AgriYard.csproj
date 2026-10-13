@@ -201,6 +201,10 @@
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\market.js" />
     <Content Include="Scripts\charts.js" />
+    <Content Include="Images\yard_rajkot.jpg" />
+    <Content Include="Images\yard_junagadh.jpg" />
+    <Content Include="Images\yard_gondal.jpg" />
+    <Content Include="Images\yard_mendarda.jpg" />
     <Content Include="Images\yard_rajkot.svg" />
     <Content Include="Images\yard_junagadh.svg" />
     <Content Include="Images\yard_gondal.svg" />
@@ -230,6 +234,22 @@
           <CustomServerUrl>
           </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <StartPageUrl>Default.aspx</StartPageUrl>
+          <StartAction>SpecificPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>True</EnableENC>
+          <AlwaysStartWebServerOnDebug>True</AlwaysStartWebServerOnDebug>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

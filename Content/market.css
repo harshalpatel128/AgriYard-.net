@@ -1,0 +1,726 @@
+/* ==========================================================================
+   AGRIYARD MARKET INTELLIGENCE STYLESHEET (market.css)
+   Description: Styles for Today's Market Rates table, Crop Search Results,
+                Advanced Filter & Sort, 7-Day Trend Chart, Crop Details,
+                Price Rise/Fall tables, Shop Directory, Profile, and Help.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. COMMON MARKET PAGE HEADERS
+   Header with page title, unit pill badge, and breadcrumb back links
+   ========================================================================== */
+.market-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.market-title-group h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1a271a;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+}
+
+.market-title-group h1.rise-title {
+    color: #1b5e20;
+}
+
+.market-title-group h1.fall-title {
+    color: #d32f2f;
+}
+
+.market-subtitle {
+    font-size: 14px;
+    color: #5c6f5c;
+}
+
+/* ==========================================================================
+   2. DATA TABLES (TODAY'S RATES, GAINERS, LOSERS, 7-DAY HISTORY)
+   Clean, striped, responsive tables matching Pages 9, 10, 11, 12, 13
+   ========================================================================== */
+.table-responsive-wrapper {
+    background-color: #ffffff;
+    border: 1px solid #e2eae2;
+    border-radius: 14px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    margin-bottom: 16px;
+}
+
+.agri-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+    white-space: nowrap;
+}
+
+.agri-table th {
+    background-color: #ffffff;
+    color: #586958;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e8ede8;
+}
+
+.agri-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #f2f5f2;
+    color: #1e291e;
+    vertical-align: middle;
+}
+
+.agri-table tr:last-child td {
+    border-bottom: none;
+}
+
+.agri-table tr:hover td {
+    background-color: #fafdfa;
+}
+
+/* Specific column styles */
+.crop-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+}
+
+.crop-icon-chip {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background-color: #f0f7f0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.price-cell {
+    font-weight: 700;
+    color: #1a271a;
+}
+
+.gain-cell {
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.loss-cell {
+    font-weight: 700;
+    color: #d32f2f;
+}
+
+.table-footnote {
+    font-size: 13px;
+    color: #7a8b7a;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   3. CROP SEARCH RESULTS LIST (PAGE 5)
+   Search input header and list of yard rate cards with chevrons
+   ========================================================================== */
+.search-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.search-results-heading {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a271a;
+}
+
+.search-results-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.search-card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+.search-result-card {
+    background-color: #ffffff;
+    border: 1px solid #e0eae0;
+    border-radius: 12px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s ease;
+}
+
+.search-result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-color: #2e7d32;
+}
+
+.search-card-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #f2f7f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-card-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a271a;
+    margin-bottom: 3px;
+}
+
+.search-card-info p {
+    font-size: 13px;
+    color: #687968;
+}
+
+.search-card-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.search-card-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a271a;
+}
+
+.search-card-chevron {
+    color: #8fa08f;
+    font-size: 18px;
+}
+
+.search-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #687968;
+}
+
+/* ==========================================================================
+   4. ADVANCED FILTER & SORT (PAGE 6)
+   Custom checkboxes, radio controls, and apply filter buttons
+   ========================================================================== */
+.filter-card {
+    background-color: #ffffff;
+    border: 1px solid #e2eae2;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.filter-grid-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 36px;
+}
+
+.filter-col-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a271a;
+    margin-bottom: 18px;
+}
+
+.filter-option-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.filter-label-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 14.5px;
+    color: #2b3b2b;
+}
+
+.filter-label-row input[type="radio"],
+.filter-label-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2e7d32;
+    cursor: pointer;
+}
+
+.filter-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid #edf2ed;
+}
+
+.btn-clear-filters {
+    background: none;
+    border: none;
+    color: #d32f2f;
+    font-weight: 700;
+    font-size: 14.5px;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.btn-clear-filters:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. CROP PRICE DETAILS & 7-DAY SUMMARY (PAGES 10, 11)
+   Two-column crop summary, 3 highlight price boxes, and trend line chart
+   ========================================================================== */
+.crop-details-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.crop-summary-card {
+    background-color: #ffffff;
+    border: 1px solid #e2eae2;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.crop-summary-heading {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a271a;
+    margin-bottom: 18px;
+}
+
+.stats-two-up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background-color: #f7faf7;
+    border: 1px solid #e5eae5;
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+
+.stat-label {
+    font-size: 12.5px;
+    color: #687968;
+    margin-bottom: 4px;
+}
+
+.stat-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a271a;
+}
+
+/* Three Price Highlights (Min, Avg, Highest) */
+.price-three-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.price-highlight-card {
+    border-radius: 10px;
+    padding: 16px 12px;
+    text-align: center;
+}
+
+.price-highlight-card.min-box {
+    background-color: #fff9e6;
+    border: 1px solid #fae8a4;
+}
+
+.price-highlight-card.avg-box {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+}
+
+.price-highlight-card.max-box {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+}
+
+.price-box-label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.min-box .price-box-label { color: #f57f17; }
+.avg-box .price-box-label { color: #2e7d32; }
+.max-box .price-box-label { color: #1976d2; }
+
+.price-box-amount {
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.min-box .price-box-amount { color: #e65100; }
+.avg-box .price-box-amount { color: #1b5e20; }
+.max-box .price-box-amount { color: #0d47a1; }
+
+/* 7-Day Trend Chart Container (Page 10) */
+.chart-container-card {
+    background-color: #ffffff;
+    border: 1px solid #e2eae2;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.chart-canvas-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot-min { background-color: #2e7d32; }
+.dot-avg { background-color: #555555; }
+.dot-max { background-color: #2196f3; }
+
+/* ==========================================================================
+   6. TRUSTED SHOP DIRECTORY (PAGE 14)
+   Search input and 3x3 responsive grid of merchant cards with call buttons
+   ========================================================================== */
+.shops-directory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.shop-card {
+    background-color: #ffffff;
+    border: 1px solid #e2eae2;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.shop-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-color: #2e7d32;
+}
+
+.shop-card-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.shop-chip-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.shop-card-details h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a271a;
+    margin-bottom: 2px;
+}
+
+.shop-card-details p {
+    font-size: 13px;
+    color: #687968;
+}
+
+.shop-call-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #f2f7f2;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.shop-call-btn:hover {
+    background-color: #2e7d32;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   7. USER PROFILE & HELP CARDS (PAGES 15, 16, 21)
+   Centered cards with green hero banner, avatar, and navigation list
+   ========================================================================== */
+.profile-card-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #e0eae0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+.profile-green-banner {
+    height: 120px;
+    background-color: #2e7d32;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-avatar-circle {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 4px solid #ffffff;
+    position: absolute;
+    bottom: -42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar-circle img {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+}
+
+.profile-body-content {
+    padding: 52px 28px 28px;
+    text-align: center;
+}
+
+.profile-user-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a271a;
+    margin-bottom: 2px;
+}
+
+.profile-user-phone {
+    font-size: 13.5px;
+    color: #5c6f5c;
+    margin-bottom: 2px;
+}
+
+.profile-user-email {
+    font-size: 13.5px;
+    color: #5c6f5c;
+    margin-bottom: 28px;
+}
+
+/* Profile / Help Nav List */
+.profile-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.profile-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border: 1px solid #e6ede6;
+    border-radius: 10px;
+    color: #1e291e;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.profile-menu-item:hover {
+    background-color: #f7faf7;
+    border-color: #2e7d32;
+    color: #1b5e20;
+}
+
+.profile-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-menu-item.logout-row {
+    background-color: #fff0f3;
+    border-color: #ffd6df;
+    color: #d32f2f;
+}
+
+.profile-menu-item.logout-row:hover {
+    background-color: #ffe0e6;
+    color: #b71c1c;
+}
+
+.profile-menu-item.bug-report-row {
+    background-color: #fff0f3;
+    border-color: #ffd6df;
+    color: #d32f2f;
+}
+
+/* ==========================================================================
+   8. MARKETING YARD DETAILS (PAGES 7, 8)
+   Hero banner image, 4 info cards, and stacked action buttons
+   ========================================================================== */
+.yard-details-hero-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 24px;
+    border: 1px solid #e2eae2;
+}
+
+.yard-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.yard-info-card {
+    background-color: #ffffff;
+    border: 1px solid #e2eae2;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.yard-info-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.yard-info-text h4 {
+    font-size: 12.5px;
+    color: #687968;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+}
+
+.yard-info-text p {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a271a;
+}
+
+.yard-actions-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 320px;
+}
+
+/* ==========================================================================
+   9. RESPONSIVE MEDIA QUERIES
+   Adapts grids, details, and tables to tablets and phones
+   ========================================================================== */
+@media (max-width: 900px) {
+    .shops-directory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .crop-details-grid {
+        grid-template-columns: 1fr;
+    }
+    .filter-grid-two-col {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .shops-directory-grid {
+        grid-template-columns: 1fr;
+    }
+    .yard-info-grid {
+        grid-template-columns: 1fr;
+    }
+    .price-three-cards {
+        grid-template-columns: 1fr;
+    }
+    .yard-details-hero-img {
+        height: 200px;
+    }
+}

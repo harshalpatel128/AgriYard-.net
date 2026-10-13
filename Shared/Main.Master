@@ -1,0 +1,137 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.Master.cs" Inherits="AgriYard.Shared.Main" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <%-- Page Meta Information --%>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriYard - Gujarat APMC Market Intelligence Platform</title>
+
+    <%-- Global Stylesheets with English Comments --%>
+    <link rel="stylesheet" href="~/Content/site.css" />
+    <link rel="stylesheet" href="~/Content/validation.css" />
+    <link rel="stylesheet" href="~/Content/dashboard.css" />
+    <link rel="stylesheet" href="~/Content/market.css" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="mainForm" runat="server">
+        <%-- Main Site Header & Desktop Navigation --%>
+        <header class="site-header">
+            <div class="header-inner">
+                <%-- AgriYard Brand Logo --%>
+                <a href="<%= ResolveUrl("~/Default.aspx") %>" class="brand-logo">
+                    Agri<span class="brand-leaf">Yard</span>
+                </a>
+
+                <%-- Desktop Navigation Links --%>
+                <nav>
+                    <ul class="nav-menu">
+                        <li class="nav-item <%= GetActiveNavClass("home") %>">
+                            <a href="<%= ResolveUrl("~/Default.aspx") %>" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item <%= GetActiveNavClass("rates") %>">
+                            <a href="<%= ResolveUrl("~/Market/Rates.aspx") %>" class="nav-link">Rates</a>
+                        </li>
+                        <li class="nav-item <%= GetActiveNavClass("rise") %>">
+                            <a href="<%= ResolveUrl("~/Market/PriceRise.aspx") %>" class="nav-link">Rise</a>
+                        </li>
+                        <li class="nav-item <%= GetActiveNavClass("fall") %>">
+                            <a href="<%= ResolveUrl("~/Market/PriceFall.aspx") %>" class="nav-link">Fall</a>
+                        </li>
+                        <li class="nav-item <%= GetActiveNavClass("shops") %>">
+                            <a href="<%= ResolveUrl("~/Shops/ShopDirectory.aspx") %>" class="nav-link">Shops</a>
+                        </li>
+                        <li class="nav-item <%= GetActiveNavClass("profile") %>">
+                            <a href="<%= ResolveUrl("~/Profile/Profile.aspx") %>" class="nav-link">Profile</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <%-- Mobile Hamburger Button --%>
+                <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu">
+                    ☰
+                </button>
+            </div>
+
+            <%-- Mobile Navigation Drawer --%>
+            <div class="mobile-drawer" id="mobileNavDrawer">
+                <ul class="mobile-menu-list">
+                    <li><a href="<%= ResolveUrl("~/Default.aspx") %>" class="mobile-nav-link <%= GetActiveMobileClass("home") %>">Home</a></li>
+                    <li><a href="<%= ResolveUrl("~/Market/Rates.aspx") %>" class="mobile-nav-link <%= GetActiveMobileClass("rates") %>">Rates</a></li>
+                    <li><a href="<%= ResolveUrl("~/Market/PriceRise.aspx") %>" class="mobile-nav-link <%= GetActiveMobileClass("rise") %>">Rise</a></li>
+                    <li><a href="<%= ResolveUrl("~/Market/PriceFall.aspx") %>" class="mobile-nav-link <%= GetActiveMobileClass("fall") %>">Fall</a></li>
+                    <li><a href="<%= ResolveUrl("~/Shops/ShopDirectory.aspx") %>" class="mobile-nav-link <%= GetActiveMobileClass("shops") %>">Shops</a></li>
+                    <li><a href="<%= ResolveUrl("~/Profile/Profile.aspx") %>" class="mobile-nav-link <%= GetActiveMobileClass("profile") %>">Profile</a></li>
+                    <li><a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="mobile-nav-link">Admin Portal</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <%-- Main Page Content Container --%>
+        <main class="main-wrapper">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <%-- AgriYard Professional Footer (Matching Page 4 & 7 of Figma PDF) --%>
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-grid">
+                    <%-- Column 1: Brand & Contact Info --%>
+                    <div class="footer-col">
+                        <h4>AgriYard</h4>
+                        <p>Gujarat's Premier APMC Market Intelligence Platform</p>
+                        <p><strong>Helpline:</strong> +91 9624042246</p>
+                        <p><strong>Support:</strong> support@agriyard.com</p>
+                    </div>
+
+                    <%-- Column 2: Explore Links --%>
+                    <div class="footer-col">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="<%= ResolveUrl("~/Default.aspx") %>">Dashboard & Rates</a></li>
+                            <li><a href="<%= ResolveUrl("~/Market/PriceRise.aspx") %>">Price Trends (Rise & Fall)</a></li>
+                            <li><a href="<%= ResolveUrl("~/Shops/ShopDirectory.aspx") %>">Trusted Shop Directory</a></li>
+                            <li><a href="<%= ResolveUrl("~/Market/FilterSort.aspx") %>">Advanced Filter & Sort</a></li>
+                        </ul>
+                    </div>
+
+                    <%-- Column 3: Major APMC Yards --%>
+                    <div class="footer-col">
+                        <h4>Major APMC Yards</h4>
+                        <ul>
+                            <li><a href="<%= ResolveUrl("~/Yards/YardDetails.aspx?id=rajkot") %>">Rajkot Marketing Yard</a></li>
+                            <li><a href="<%= ResolveUrl("~/Yards/YardDetails.aspx?id=junagadh") %>">Junagadh Marketing Yard</a></li>
+                            <li><a href="<%= ResolveUrl("~/Yards/YardDetails.aspx?id=gondal") %>">Gondal Marketing Yard</a></li>
+                            <li><a href="<%= ResolveUrl("~/Yards/YardDetails.aspx?id=mendarda") %>">Mendarda Marketing Yard</a></li>
+                        </ul>
+                    </div>
+
+                    <%-- Column 4: Legal & Admin --%>
+                    <div class="footer-col">
+                        <h4>Legal & Admin</h4>
+                        <ul>
+                            <li><a href="<%= ResolveUrl("~/Support/HelpSupport.aspx") %>">Privacy Policy</a></li>
+                            <li><a href="<%= ResolveUrl("~/Support/HelpSupport.aspx") %>">Terms of Service</a></li>
+                            <li><a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>">Admin Portal</a></li>
+                            <li><a href="<%= ResolveUrl("~/Account/Login.aspx") %>">User Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <%-- Footer Bottom Copyright --%>
+                <div class="footer-bottom">
+                    &copy; 2026 AgriYard Inc. All rights reserved. Designed for Gujarat Farmers & Traders.
+                </div>
+            </div>
+        </footer>
+    </form>
+
+    <%-- Interactive Scripts --%>
+    <script src="<%= ResolveUrl("~/Scripts/site.js") %>"></script>
+    <script src="<%= ResolveUrl("~/Scripts/market.js") %>"></script>
+</body>
+</html>

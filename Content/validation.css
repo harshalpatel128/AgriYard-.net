@@ -1,0 +1,124 @@
+/* ==========================================================================
+   AGRIYARD VALIDATION STYLESHEET (validation.css)
+   Description: Controls styling for all six mandatory ASP.NET Web Forms
+                validators (RequiredFieldValidator, RangeValidator, CompareValidator,
+                RegularExpressionValidator, CustomValidator, and ValidationSummary).
+   ========================================================================== */
+
+/* ==========================================================================
+   1. INLINE VALIDATOR ERROR MESSAGES
+   Styling for ASP.NET validator span elements rendered beneath invalid fields
+   ========================================================================== */
+.validation-error,
+span.validation-error,
+.text-danger {
+    color: #c62828 !important;        /* Deep crimson red for clear error visibility */
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-top: 5px;
+    display: block;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
+}
+
+/* Inline icon for error clarity */
+.validation-error::before {
+    content: "⚠ ";
+    font-size: 11px;
+    margin-right: 3px;
+}
+
+/* ==========================================================================
+   2. VALIDATION SUMMARY CONTROL
+   Displays the consolidated list of validation errors at top of the form
+   ========================================================================== */
+.validation-summary,
+.validation-summary-errors,
+.alert-validation {
+    background-color: #ffebee;        /* Soft red alert container background */
+    border: 1px solid #ffcdd2;        /* Distinct pink-red outline border */
+    border-left: 4px solid #c62828;   /* Strong left accent bar */
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    color: #b71c1c;
+    font-size: 13.5px;
+    text-align: left;
+    box-shadow: 0 2px 6px rgba(198, 40, 40, 0.08);
+}
+
+.validation-summary ul,
+.validation-summary-errors ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.validation-summary li,
+.validation-summary-errors li {
+    margin-bottom: 4px;
+    color: #b71c1c;
+    font-weight: 500;
+}
+
+/* Header within summary box */
+.validation-summary-header {
+    font-weight: 700;
+    font-size: 14px;
+    color: #b71c1c;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   3. SUCCESS & INFORMATIONAL FEEDBACK BANNERS
+   Displays demo-only action notices without claiming server persistence
+   ========================================================================== */
+.demo-success-banner {
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-left: 4px solid #2e7d32;
+    color: #1b5e20;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.demo-info-banner {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-left: 4px solid #1976d2;
+    color: #0d47a1;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* ==========================================================================
+   4. INVALID FIELD HIGHLIGHTS
+   Visual cue when an input control fails validation
+   ========================================================================== */
+.input-validation-error,
+.form-control.is-invalid {
+    border-color: #c62828 !important;
+    background-color: #fffbfb !important;
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.12) !important;
+}
+
+/* ==========================================================================
+   5. ACCESSIBILITY & FOCUS
+   Ensures focused form controls remain legible and accessible
+   ========================================================================== */
+:focus-visible {
+    outline: 2px solid #2e7d32;
+    outline-offset: 2px;
+}
